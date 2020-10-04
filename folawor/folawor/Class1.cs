@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Collections;
+using ExtensionMethods;
 using System.Diagnostics;
 
 namespace folawor
@@ -9,12 +10,22 @@ namespace folawor
     {
         public string a_ = "abc";
         public string a__ = "abcd";
-        public static void Main()
+
+        public Stack myStack;
+        static void Main()
         {
-            Stack myStack = new Stack();
+            SamplesStack newstr = new SamplesStack();
+            newstr.myStack = new Stack();
+            Object value = 123;
+            Object value_name = "Artent";
+            Object value_name_organization = "OOO OOO";
+            Console.WriteLine("ID object: " + value + " Name administrator " + value_name + " Name of organization: " + value_name_organization);
+
             string a;
             for (; ; )
             {
+                newstr.a_ += newstr.a__;
+                Console.WriteLine("Result operator: " + newstr.a_);
                 Data();
                 System.Threading.Thread.Sleep(500);
                 Console.WriteLine("Enter value: ");
@@ -31,30 +42,30 @@ namespace folawor
                     case 1:
                         Console.WriteLine("Enter new value in stack: ");
                         a = Console.ReadLine();
-                        myStack.Push(a);
+                        newstr.myStack.Push(a);
                         break;
                     case 2:
-                        if (myStack.Count == 0)
+                        if (newstr.myStack.Count == 0)
                         {
                             Console.WriteLine("Стек пуст!");
                         }
                         else
                         {
-                            Copy_stack(myStack, myStack);
+                            Copy_stack(newstr.myStack, newstr.myStack);
                         }
                         break;
                     case 3:
-                        if (myStack.Count == 0)
+                        if (newstr.myStack.Count == 0)
                         {
                             Console.WriteLine("Стек пуст!");
                         }
                         else
                         {
-                            PrintValues(myStack);
+                            PrintValues(newstr.myStack);
                         }
                         break;
                     case 4:
-                        if (myStack.Count == 0)
+                        if (newstr.myStack.Count == 0)
                         {
                             Console.WriteLine("Стек пуст!");
                         }
@@ -62,31 +73,44 @@ namespace folawor
                         {
                             Console.WriteLine("Enter postion value stack: ");
                             int posit = int.Parse(Console.ReadLine());
-                            PrintValues_number(myStack, posit);
+                            PrintValues_number(newstr.myStack, posit);
                         }                       
                         break;
                     case 5:
-                        if (myStack.Count == 0)
+                        if (newstr.myStack.Count == 0)
                         {
                             Console.WriteLine("Стек пуст!");
                         }
                         else
                         {
-                            PrintValues(myStack);
+                            PrintValues(newstr.myStack);
                         }
                         break;
                     case 6:
-                        if (myStack.Count == 0)
+                        if (newstr.myStack.Count == 0)
                         {
                             Console.WriteLine("Стек пуст!");
                         }
                         else
                         {
-                            PrintValues_Center(myStack, myStack);
+                            PrintValues_Center(newstr.myStack, newstr.myStack);
                         }
                         break;
                     case 7:
                         return;
+                    case 8:
+                        int newsize = Size_Stzck(newstr.myStack);
+                        if (newstr.myStack.Count == 0 || newsize == 1)
+                        {
+                            Console.WriteLine("Стек пуст или имеет одно значение");
+                        }
+                        else
+                        {
+                            StatisticOperation.class_interaction_number_element();
+                            StatisticOperation.class_interaction_difference();
+                            StatisticOperation.class_interaction_Sum();
+                        }
+                        break;
                     default:
                         Console.WriteLine("Error repeat please");
                         break;
@@ -273,6 +297,19 @@ namespace folawor
                         break;    
                     case 7:
                         return;
+                    case 8:
+                        int newsize = Size_Stzck(myStack2);
+                        if (myStack2.Count == 0 || newsize == 1)
+                        {
+                            Console.WriteLine("Стек пуст или имеет одно значение");
+                        }
+                        else
+                        {
+                            StatisticOperation.class_interaction_number_element();
+                            StatisticOperation.class_interaction_difference();
+                            StatisticOperation.class_interaction_Sum();
+                        }
+                        break;
                     default:
                         Console.WriteLine("Error repeat please");
                         Console.WriteLine();
@@ -285,19 +322,72 @@ namespace folawor
             DateTime time_Now = DateTime.Now;
             Console.WriteLine("Time Now: " + time_Now);
         }
-
-
-        //foreach (Object obj in myCollection)
-        //     Console.Write("    {0}", obj);
-        // Console.WriteLine();
     }
-    class StatisticOperation : SamplesStack
+    static class StatisticOperation
     {
-        public void class_interaction()
+        public static void class_interaction_number_element()
         {
             SamplesStack p_ = new SamplesStack();
-            Stack mystack;
+            Stack newst = p_.myStack;
+            int sizestack = 0;
+            foreach (Object obj in p_.myStack)
+            {
+                sizestack += 1;
+            }
+            Console.WriteLine("Number Stack: " + sizestack);
+        }
+        public static void class_interaction_Sum()
+        {
+            SamplesStack p_ = new SamplesStack();
+            Stack newst = p_.myStack;
+            int sizestack = 0;
 
+            foreach (Object obj in p_.myStack)
+            {
+                sizestack += 1;
+            }
+            int max = sizestack;
+            string str_ = "";
+            sizestack = 0;
+            foreach (Object obj in p_.myStack)
+            {
+                sizestack += 1;
+                if(sizestack==1 || sizestack == max)
+                {
+                    str_ += p_.myStack;
+                }
+            }
+            Console.WriteLine("Sum Stack: " + str_);
+        }
+        public static void class_interaction_difference()
+        {
+            SamplesStack p_ = new SamplesStack();
+            Stack newst = p_.myStack;
+            int sizestack = 0;
+
+            foreach (Object obj in p_.myStack)
+            {
+                sizestack += 1;
+            }
+            int max = sizestack;
+            sizestack = 0;
+            string str_ = "";
+            string del_ = "";
+            foreach (Object obj in p_.myStack)
+            {
+                sizestack += 1;
+                if (sizestack == 1)
+                {
+                    str_ += p_.myStack;
+                    del_ += p_.myStack;
+                }
+                if (sizestack == max)
+                {
+                    str_ = str_.Replace(del_, "");
+                }
+
+            }
+            Console.WriteLine("Sum Stack: " + str_);
         }
     }
 }
