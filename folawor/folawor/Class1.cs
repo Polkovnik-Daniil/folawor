@@ -1,16 +1,21 @@
 ﻿using System;
+using System.Threading;
 using System.Collections;
+using System.Diagnostics;
+
 namespace folawor
 {
     public class SamplesStack
     {
+        public string a_ = "abc";
+        public string a__ = "abcd";
         public static void Main()
         {
-
             Stack myStack = new Stack();
             string a;
             for (; ; )
             {
+                Data();
                 System.Threading.Thread.Sleep(500);
                 Console.WriteLine("Enter value: ");
                 Console.WriteLine("1 - Enter new element stack: ");
@@ -80,6 +85,8 @@ namespace folawor
                             PrintValues_Center(myStack, myStack);
                         }
                         break;
+                    case 7:
+                        return;
                     default:
                         Console.WriteLine("Error repeat please");
                         break;
@@ -139,6 +146,12 @@ namespace folawor
                 sizestack += 1;
             }
             return sizestack;
+        }
+        public static SamplesStack operator + (SamplesStack c1)
+        {
+            SamplesStack result = new SamplesStack();
+            result.a__ += result.a_;
+            return result;
         }
         public static void Copy_stack(IEnumerable myCollection,Stack myStack)
         {
@@ -257,10 +270,9 @@ namespace folawor
                             }
                             PrintValues(Copy);
                         }
-                        break;
-                        case 7:
-                            System.Environment.Exit;
-                        break;
+                        break;    
+                    case 7:
+                        return;
                     default:
                         Console.WriteLine("Error repeat please");
                         Console.WriteLine();
@@ -268,79 +280,24 @@ namespace folawor
                 }
             }
         }
-           //foreach (Object obj in myCollection)
-           //     Console.Write("    {0}", obj);
-           // Console.WriteLine();
+        public static void Data()
+        {
+            DateTime time_Now = DateTime.Now;
+            Console.WriteLine("Time Now: " + time_Now);
+        }
+
+
+        //foreach (Object obj in myCollection)
+        //     Console.Write("    {0}", obj);
+        // Console.WriteLine();
+    }
+    class StatisticOperation : SamplesStack
+    {
+        public void class_interaction()
+        {
+            SamplesStack p_ = new SamplesStack();
+            Stack mystack;
+
+        }
     }
 }
-
-
-//using System;
-//using System.Collections;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using System.Collections.Generic;
-//namespace ConsoleApplication1
-//{
-//    class folawor
-//    {
-//        static void Main()
-//        {
-//            Stack MyStack = new Stack();
-//            for (; ; )
-//            {
-//                Console.WriteLine("Enter value: ");
-//                Console.WriteLine("Enter new element stack: ");
-//                Console.WriteLine("Copy Stack: ");
-//                Console.WriteLine("Enter value: ");
-//                Console.WriteLine("Pop an item from the stack: ");
-//                Console.WriteLine("Checking if the stack is empty: ");
-//                int chnge = int.Parse(Console.ReadLine());
-//                switch (chnge)
-//                {
-//                    case 1:
-//                        break;
-//                    case 2:
-//                        break;
-//                    case 3:
-//                        break;
-//                    case 4:
-//                        break;
-//                    case 5:
-//                        if (MyStack.Count == 0)
-//                        {
-//                            Console.WriteLine("\nСтек пуст!");
-//                            Console.WriteLine();
-//                        }
-//                        break;
-//                }
-//            }
-//        }
-//    }
-//}
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////
-/////
-//MyStack.Push('A');
-//MyStack.Push('N');
-//MyStack.Push('X');
-//Console.WriteLine("Исходный стек: ");
-//foreach (char s in MyStack)
-//    Console.Write(s);
-//Console.WriteLine("\n");
-//while (MyStack.Count > 0)
-//{
-//    Console.WriteLine("Pop -> {0}", MyStack.Pop());
-//}
-//if (MyStack.Count == 0)
-//    Console.WriteLine("\nСтек пуст!");
-//Console.ReadLine();
