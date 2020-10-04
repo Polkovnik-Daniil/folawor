@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Collections;
-using ExtensionMethods;
 using System.Diagnostics;
 
 namespace folawor
@@ -109,6 +108,7 @@ namespace folawor
                             StatisticOperation.class_interaction_number_element();
                             StatisticOperation.class_interaction_difference();
                             StatisticOperation.class_interaction_Sum();
+                            StatisticOperation.WordCount(newstr.myStack);
                         }
                         break;
                     default:
@@ -308,6 +308,7 @@ namespace folawor
                             StatisticOperation.class_interaction_number_element();
                             StatisticOperation.class_interaction_difference();
                             StatisticOperation.class_interaction_Sum();
+                            StatisticOperation.WordCount(myStack);
                         }
                         break;
                     default:
@@ -388,6 +389,19 @@ namespace folawor
 
             }
             Console.WriteLine("Sum Stack: " + str_);
+        }
+        public static void WordCount(IEnumerable myCollection)
+        {
+            int sizestack = 0,lengthstr;
+            string str_ = "";
+            foreach (Object obj in myCollection)
+            {
+                sizestack += 1;
+                str_ += myCollection;
+                lengthstr = str_.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+                str_ = "";
+                lengthstr = 0;
+            }
         }
     }
 }
