@@ -9,7 +9,7 @@ namespace folawor
     {
         public string a_ = "abc";
         public string a__ = "abcd";
-
+        public bool trfl;
         public Stack myStack;
         static void Main()
         {
@@ -19,12 +19,12 @@ namespace folawor
             Object value_name = "Artent";
             Object value_name_organization = "OOO OOO";
             Console.WriteLine("ID object: " + value + " Name administrator " + value_name + " Name of organization: " + value_name_organization);
+            newstr.a_ += newstr.a__;
+            Console.WriteLine("Result operator: " + newstr.a_);
 
             string a;
             for (; ; )
             {
-                newstr.a_ += newstr.a__;
-                Console.WriteLine("Result operator: " + newstr.a_);
                 Data();
                 System.Threading.Thread.Sleep(500);
                 Console.WriteLine("Enter value: ");
@@ -177,6 +177,46 @@ namespace folawor
             result.a__ += result.a_;
             return result;
         }
+        public static SamplesStack operator ++ (SamplesStack c1)
+        {
+            SamplesStack result = new SamplesStack();
+            Console.WriteLine("Enter new Value");
+            string str = Console.ReadLine();
+            result.myStack.Push(str);
+            return result;
+        }
+        public static SamplesStack operator --(SamplesStack cq)
+        {
+            SamplesStack newval = new SamplesStack();
+            if (newval.myStack.Count == 0)
+            {
+                Console.WriteLine("Stack is empty");
+            }
+            else
+            {
+                string myStackstr = (String)newval.myStack.Pop();
+                Console.WriteLine("Value Stack: " + myStackstr);
+            }
+            return newval;
+        }
+        public static SamplesStack operator true(SamplesStack cq)
+        {
+            SamplesStack newval = new SamplesStack();
+            if (newval.myStack.Count == 0)
+            {
+                Console.WriteLine("Stack is empty");
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("Stack is not empty");
+                return true;
+            }
+        }
+
+
+
+
         public static void Copy_stack(IEnumerable myCollection,Stack myStack)
         {
             Stack Copy = new Stack();
